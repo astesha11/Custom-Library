@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>All-in-One Web App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #222;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0051a3;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input {
+      padding: 12px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px;
+      background: linear-gradient(to right, #56ccf2, #2f80ed);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .card {
+      background: #f7f9fc;
+      padding: 15px 20px;
+      border-left: 5px solid #2f80ed;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin: 0;
+      color: #2f80ed;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌟 Custom Library Web App</h1>
+
+    <!-- Navigation -->
+    <nav>
+      <a onclick="showPage('login')">Login</a>
+      <a onclick="showPage('register')">Register</a>
+      <a onclick="showPage('reset')">Reset</a>
+      <a onclick="showPage('dashboard')">Dashboard</a>
+      <a onclick="showPage('blog')">Blog</a>
+      <a onclick="showPage('tasks')">Tasks</a>
+    </nav>
+
+    <!-- Pages -->
+    <div id="login">
+      <h2>🔐 Login</h2>
+      <form onsubmit="alert('Logged in!'); showPage('dashboard'); return false;">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <div id="register" class="hidden">
+      <h2>📝 Register</h2>
+      <form onsubmit="alert('Registered!'); showPage('login'); return false;">
+        <input type="text" placeholder="Username" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Register</button>
+      </form>
+    </div>
+
+    <div id="reset" class="hidden">
+      <h2>🔁 Reset Password</h2>
+      <form onsubmit="alert('Reset link sent!'); return false;">
+        <input type="email" placeholder="Enter your email" required />
+        <button type="submit">Send Reset Link</button>
+      </form>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <h2>🏠 Dashboard</h2>
+      <p style="text-align: center;">Welcome, <strong>User</strong>! Use the menu to view your tasks or blog.</p>
+    </div>
+
+    <div id="blog" class="hidden">
+      <h2>📰 Blog Posts</h2>
+      <div class="card">
+        <h3>📌 My First Blog</h3>
+        <p>This is a beautiful and responsive blog component in HTML.</p>
+      </div>
+      <div class="card">
+        <h3>✨ Second Post</h3>
+        <p>All built in one HTML page using vibrant styles and simple JS.</p>
+      </div>
+    </div>
+
+    <div id="tasks" class="hidden">
+      <h2>✅ Task Manager</h2>
+      <input type="text" id="new-task" placeholder="Enter a new task..." />
+      <button onclick="addTask()">Add Task</button>
+      <ul id="task-list"></ul>
+    </div>
+  </div>
+
+  <script>
+    function showPage(id) {
+      const pages = ['login', 'register', 'reset', 'dashboard', 'blog', 'tasks'];
+      pages.forEach(page => document.getElementById(page).classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function addTask() {
+      const taskInput = document.getElementById('new-task');
+      const task = taskInput.value.trim();
+      const taskList = document.getElementById('task-list');
+
+      if (task !== '') {
+        const li = document.createElement('li');
+        li.textContent = task;
+        taskList.appendChild(li);
+        taskInput.value = '';
+      }
+    }
+
+    showPage('login');
+  </script>
+
+</body>
+</html>
+
+
+
